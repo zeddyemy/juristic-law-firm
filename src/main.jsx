@@ -1,12 +1,26 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.jsx';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
+
+import App from "./App.jsx";
 
 // Importing the Bootstrap CSS
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-createRoot(document.getElementById('root')).render(
+
+// Function to get CSS variable value
+const getCssVariable = (variable) => getComputedStyle(document.documentElement)
+		.getPropertyValue(variable)
+		.trim();
+
+
+// Render the app
+const root = createRoot(document.getElementById("root"));
+
+root.render(
     <StrictMode>
-        <App />
+        <HelmetProvider>
+            <App />
+        </HelmetProvider>
     </StrictMode>,
 );
