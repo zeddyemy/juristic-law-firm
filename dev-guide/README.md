@@ -138,3 +138,88 @@ UserCard.propTypes = {
     }).isRequired,
 };
 ```
+
+### 3.3. Reusable Components
+- Create Reusable Components: Identify and create reusable components for commonly used UI elements (e.g., buttons, cards, modals).
+
+**Example: Creating a Reusable Button Component**
+```jsx
+// components/Button.jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Button = ({ children, onClick, type = 'button', className = '' }) => (
+  <button type={type} className={`btn ${className}`} onClick={onClick}>
+    {children}
+  </button>
+);
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+  className: PropTypes.string,
+};
+
+export default Button;
+```
+
+**Usage**
+```jsx
+import Button from './components/Button';
+
+const App = () => (
+  <Button className="btn-primary" onClick={handleClick}>
+    Click Me
+  </Button>
+);
+```
+
+## 4. Bootstrap Conventions
+
+### 4.1. Grid System
+- Use Container, Row, and Col: Leverage Bootstrap’s grid system for responsive layouts.
+
+- The Project will utilize React-Bootstrap Library. So Its react component should be used in most cases.
+
+**Example:**
+```jsx
+<Container className="custom-class">
+  <Row className="p-2">
+    <Col className="col-md-6">Column 1</Col>
+    <Col className="col-md-6">Column 2</Col>
+  </Row>
+</Container>
+```
+
+### 4.2. Customizing Bootstrap
+- Override with Caution: If you need to customize Bootstrap styles, do so by adding your own classes or using Sass variables.
+- Avoid Inline Styles: Prefer using classes over inline styles to maintain consistency and leverage Bootstrap’s utility classes.
+
+**Example**
+```jsx
+// Using custom class to override Bootstrap styles
+<button className="btn btn-primary custom-btn">Click Me</button>
+
+/* In your CSS */
+.custom-btn {
+  background-color: #4caf50;
+  border: none;
+}
+```
+
+## 5. Additional Best Practices
+
+### 5.1. Version Control
+- **Commit Frequently:** Make small, frequent commits with meaningful messages.
+- **Pull Latest Changes:** Always pull the latest changes from the main branch before starting new work.
+- **Resolve Conflicts Promptly:** Address merge conflicts as soon as they arise to avoid blocking progress.
+
+### 5.2. Code Reviews
+- **Regular Reviews:** Schedule regular code reviews to provide feedback and ensure adherence to guidelines.
+
+
+### 5.3. Documentation
+- **Inline Comments:** Use comments judiciously to explain complex logic or important decisions.
+- **Component Documentation:** As mentioned, document reusable components for easy reference.
+
